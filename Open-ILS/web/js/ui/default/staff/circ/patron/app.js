@@ -75,6 +75,8 @@ angular.module('egPatronApp', ['ngRoute', 'ui.bootstrap', 'egUserBucketMod',
         });
     }]};
 	
+    // A filter to check if the patron is not above the age of majority
+	
     .filter('patronAgeCheck', function() {
 	    return function(birthDate, ageOfMajority) {    
 		var today = new Date();
@@ -84,9 +86,9 @@ angular.module('egPatronApp', ['ngRoute', 'ui.bootstrap', 'egUserBucketMod',
 			age--;
 		}
 		if (ageOfMajority) {    
-			return age >= ageOfMajority;
+			return age < ageOfMajority;
 		} else {
-			return age >= 18;
+			return age < 18;
 		}
 	    }
     }
