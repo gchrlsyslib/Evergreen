@@ -55,6 +55,7 @@
       <a class="col-md-5" ng-if="obscure_dob()" ng-click="show_dob(true)">[% l('Date of Birth') %]</a>
       <div class="col-md-5" ng-if="!obscure_dob()">[% l('Date of Birth') %]</div>
       <div class="col-md-7" ng-show="now_show_dob()">{{patron().dob() | date:$root.egDateFormat}}</div>
+      <div class="col-md-7 bs-warning" ng-if="patron().dob()|patronAgeCheck">Patron is a Juvenile</div>
     </div>
     <div class="row">
       <div class="col-md-5">[% l('Last Activity') %]</div>
