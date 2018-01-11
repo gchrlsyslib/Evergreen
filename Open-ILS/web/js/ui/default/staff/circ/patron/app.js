@@ -74,6 +74,22 @@ angular.module('egPatronApp', ['ngRoute', 'ui.bootstrap', 'egUserBucketMod',
             });
         });
     }]};
+	
+    .filter('patronAgeCheck', function() {
+	    return function(birthDate, ageOfMajority) {    
+		var today = new Date();
+		var age = today.getFullYear() - birthDate.getFullYear();
+		var m = today.getMonth() - birthDate.getMonth();
+		if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+			age--;
+		}
+		if (ageOfMajority) {    
+			return age >= ageOfMajority;
+		} else {
+			return age >= 18;
+		}
+	    }
+    }
 
     $routeProvider.when('/circ/patron/search', {
         templateUrl: './circ/patron/t_search',
